@@ -10,9 +10,7 @@ public class MainFrame extends javax.swing.JFrame {
 		initComponents();
 	}
 
-
 	@SuppressWarnings("unchecked")
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
 		jScrollPane1 = new javax.swing.JScrollPane();
@@ -30,9 +28,10 @@ public class MainFrame extends javax.swing.JFrame {
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-		jTable1.setModel(new javax.swing.table.DefaultTableModel(
+		jTable1.setModel(new DefaultTableModel(
 				new Object[][] { { new Integer(1), "ID", "VARCHAR2(64)", "UUID", new Boolean(true) } },
 				new String[] { "ÐòºÅ", "×Ö¶ÎÃû³Æ", "×Ö¶ÎÀàÐÍ", "×¢ÊÍ", "ÊÇ·ñÔÊÐí¿Õ" }) {
+			private static final long serialVersionUID = -4390239607921494217L;
 			Class[] types = new Class[] { java.lang.Integer.class, java.lang.String.class, java.lang.String.class,
 					java.lang.String.class, java.lang.Boolean.class };
 			boolean[] canEdit = new boolean[] { false, true, true, true, true };
@@ -173,14 +172,6 @@ public class MainFrame extends javax.swing.JFrame {
 	 * @param args the command line arguments
 	 */
 	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		// <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-		// (optional) ">
-		/*
-		 * If Nimbus (introduced in Java SE 6) is not available, stay with the default
-		 * look and feel. For details see
-		 * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-		 */
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
@@ -197,9 +188,6 @@ public class MainFrame extends javax.swing.JFrame {
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
 			java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
-		// </editor-fold>
-
-		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				new MainFrame().setVisible(true);
@@ -207,7 +195,6 @@ public class MainFrame extends javax.swing.JFrame {
 		});
 	}
 
-	// Variables declaration - do not modify
 	private javax.swing.JButton addButton;
 	private javax.swing.JButton delButton;
 	private javax.swing.JButton jButton1;
@@ -220,5 +207,4 @@ public class MainFrame extends javax.swing.JFrame {
 	private javax.swing.JTextField jTextField1;
 	private javax.swing.JTextField jTextField2;
 	private javax.swing.JTextField jTextField3;
-	// End of variables declaration
 }
