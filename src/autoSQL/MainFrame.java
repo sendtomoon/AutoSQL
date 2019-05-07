@@ -1,10 +1,31 @@
 package autoSQL;
 
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
+import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 public class MainFrame extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 621549132742507169L;
+
+	private javax.swing.JButton addButton;
+	private javax.swing.JButton delButton;
+	private javax.swing.JButton jButton1;
+	private javax.swing.JCheckBox jCheckBox1;
+	private javax.swing.JLabel jLabel1;
+	private javax.swing.JLabel jLabel2;
+	private javax.swing.JLabel jLabel3;
+	private javax.swing.JScrollPane jScrollPane1;
+	private javax.swing.JTable jTable1;
+	private javax.swing.JTextField jTextField1;
+	private javax.swing.JTextField jTextField2;
+	private javax.swing.JTextField jTextField3;
 
 	public MainFrame() {
 		initComponents();
@@ -27,8 +48,10 @@ public class MainFrame extends javax.swing.JFrame {
 		jLabel3 = new javax.swing.JLabel();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setTitle("SQL生成器");
 
-		jTable1.setModel(new DefaultTableModel(
+		jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+		jTable1.setModel(new javax.swing.table.DefaultTableModel(
 				new Object[][] { { new Integer(1), "ID", "VARCHAR2(64)", "UUID", new Boolean(true) } },
 				new String[] { "序号", "字段名称", "字段类型", "注释", "是否允许空" }) {
 			private static final long serialVersionUID = -4390239607921494217L;
@@ -44,11 +67,13 @@ public class MainFrame extends javax.swing.JFrame {
 				return canEdit[columnIndex];
 			}
 		});
-		jTable1.setColumnSelectionAllowed(true);
+		jTable1.setRowHeight(26);
+		jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+		jTable1.getTableHeader().setReorderingAllowed(false);
 		jScrollPane1.setViewportView(jTable1);
 		if (jTable1.getColumnModel().getColumnCount() > 0) {
-			jTable1.getColumnModel().getColumn(0).setResizable(false);
 			jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);
+			jTable1.getColumnModel().getColumn(2).setCellEditor(setTypeEditor());
 		}
 
 		addButton.setText("添加一行");
@@ -72,6 +97,7 @@ public class MainFrame extends javax.swing.JFrame {
 			}
 		});
 
+		jCheckBox1.setSelected(true);
 		jCheckBox1.setText("是否生成留痕SQL");
 
 		jLabel1.setText("起始号");
@@ -155,13 +181,18 @@ public class MainFrame extends javax.swing.JFrame {
 		DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
 		int index = (int) tm.getValueAt(tm.getRowCount() - 1, 0);
 		index = index + 1;
-		tm.addRow(new Object[] { index, "", "VARCHAR2(64)", "", new Boolean(true) });
+		tm.addRow(new Object[] { index, "", "VARCHAR2(64)", "", true });
 		jTable1.setModel(tm);
 	}
 
 	private void delButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
 		tm.removeRow(jTable1.getSelectedRow());
+		int all = tm.getRowCount();
+		for (int i = 0; i < all; i++) {
+			tm.setValueAt(i + 1, i, 0);
+		}
+		jTable1.setModel(tm);
 	}
 
 	private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {
@@ -172,6 +203,14 @@ public class MainFrame extends javax.swing.JFrame {
 	 * @param args the command line arguments
 	 */
 	public static void main(String args[]) {
+		/* Set the Nimbus look and feel */
+		// <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+		// (optional) ">
+		/*
+		 * If Nimbus (introduced in Java SE 6) is not available, stay with the default
+		 * look and feel. For details see
+		 * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+		 */
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
@@ -188,6 +227,9 @@ public class MainFrame extends javax.swing.JFrame {
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
 			java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
+		// </editor-fold>
+
+		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				new MainFrame().setVisible(true);
@@ -195,16 +237,28 @@ public class MainFrame extends javax.swing.JFrame {
 		});
 	}
 
-	private javax.swing.JButton addButton;
-	private javax.swing.JButton delButton;
-	private javax.swing.JButton jButton1;
-	private javax.swing.JCheckBox jCheckBox1;
-	private javax.swing.JLabel jLabel1;
-	private javax.swing.JLabel jLabel2;
-	private javax.swing.JLabel jLabel3;
-	private javax.swing.JScrollPane jScrollPane1;
-	private javax.swing.JTable jTable1;
-	private javax.swing.JTextField jTextField1;
-	private javax.swing.JTextField jTextField2;
-	private javax.swing.JTextField jTextField3;
+	private TableCellEditor setTypeEditor() {
+		JComboBox<String> jcb = new JComboBox<String>();
+		jcb.addItem("VARCHAR2(64)");
+		jcb.addItem("DATE");
+		jcb.addItem("NUMBER");
+		jcb.setEditable(true);
+		TableCellEditor tce = new DefaultCellEditor(jcb);
+		return tce;
+	}
+
+	private TableCellRenderer setNoEditor() {
+		DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+		return tcr;
+	}
+
+	private JTableHeader getHeader() {
+		JTableHeader header = new JTableHeader();
+		DefaultTableCellHeaderRenderer tcr = new DefaultTableCellHeaderRenderer();
+		tcr.setHorizontalAlignment(JLabel.CENTER);
+		header.setDefaultRenderer(tcr);
+		header.setEnabled(true);
+		return header;
+	}
+
 }
