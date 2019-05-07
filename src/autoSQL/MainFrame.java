@@ -21,11 +21,13 @@ public class MainFrame extends javax.swing.JFrame {
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabel2;
 	private javax.swing.JLabel jLabel3;
+	private javax.swing.JLabel jLabel4;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JTable jTable1;
 	private javax.swing.JTextField jTextField1;
 	private javax.swing.JTextField jTextField2;
 	private javax.swing.JTextField jTextField3;
+	private javax.swing.JTextField jTextField4;
 
 	public MainFrame() {
 		initComponents();
@@ -42,10 +44,12 @@ public class MainFrame extends javax.swing.JFrame {
 		jTextField1 = new javax.swing.JTextField();
 		jTextField2 = new javax.swing.JTextField();
 		jTextField3 = new javax.swing.JTextField();
+		jTextField4 = new javax.swing.JTextField();
 		jCheckBox1 = new javax.swing.JCheckBox();
 		jLabel1 = new javax.swing.JLabel();
 		jLabel2 = new javax.swing.JLabel();
 		jLabel3 = new javax.swing.JLabel();
+		jLabel4 = new javax.swing.JLabel();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("SQL生成器");
@@ -105,6 +109,7 @@ public class MainFrame extends javax.swing.JFrame {
 		jLabel2.setText("编辑人");
 
 		jLabel3.setText("表名");
+		jLabel4.setText("表注释");
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
@@ -117,11 +122,13 @@ public class MainFrame extends javax.swing.JFrame {
 						.addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE,
 								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE,
+								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE,
 								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-								.addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-								.addComponent(jTextField2).addComponent(jTextField1))
+								.addComponent(jTextField2).addComponent(jTextField1).addComponent(jTextField3)
+								.addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
 								.createSequentialGroup()
 								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
@@ -135,7 +142,7 @@ public class MainFrame extends javax.swing.JFrame {
 								.addComponent(delButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124,
 										javax.swing.GroupLayout.PREFERRED_SIZE)
 								.addContainerGap())
-								.addGroup(layout.createSequentialGroup().addGap(50, 50, 50)
+								.addGroup(layout.createSequentialGroup().addGap(0, 0, 0)
 										.addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 127,
 												javax.swing.GroupLayout.PREFERRED_SIZE)
 										.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))));
@@ -154,28 +161,34 @@ public class MainFrame extends javax.swing.JFrame {
 										javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
 								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
+								.createSequentialGroup()
+								.addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addGap(18, 18, 18)
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+										.addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, 34,
+												Short.MAX_VALUE)
+										.addComponent(delButton, javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 								.addGroup(layout.createSequentialGroup()
 										.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35,
+												.addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21,
 														javax.swing.GroupLayout.PREFERRED_SIZE)
 												.addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE,
 														javax.swing.GroupLayout.DEFAULT_SIZE,
 														javax.swing.GroupLayout.PREFERRED_SIZE))
-										.addGap(18, 18, 18)
+										.addGap(9, 9, 9)
 										.addGroup(layout
 												.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-												.addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, 34,
-														Short.MAX_VALUE)
-												.addComponent(delButton, javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-								.addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21,
-										javax.swing.GroupLayout.PREFERRED_SIZE))
+												.addComponent(jTextField4).addComponent(jLabel4,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jScrollPane1,
 								javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)));
 
 		pack();
-	}// </editor-fold>
+	}
 
 	private void addButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
@@ -196,21 +209,14 @@ public class MainFrame extends javax.swing.JFrame {
 	}
 
 	private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {
-		// TODO add your handling code here:
+		DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
+		Gere.gere(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), tm);
 	}
 
 	/**
 	 * @param args the command line arguments
 	 */
 	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		// <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-		// (optional) ">
-		/*
-		 * If Nimbus (introduced in Java SE 6) is not available, stay with the default
-		 * look and feel. For details see
-		 * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-		 */
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
