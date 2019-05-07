@@ -2,13 +2,8 @@ package autoSQL;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableCellRenderer;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 public class MainFrame extends javax.swing.JFrame {
 
@@ -101,8 +96,13 @@ public class MainFrame extends javax.swing.JFrame {
 			}
 		});
 
-		jCheckBox1.setSelected(true);
+		jCheckBox1.setSelected(false);
 		jCheckBox1.setText("是否生成留痕SQL");
+		jCheckBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				jCheckBox1StateChanged(evt);
+			}
+		});
 
 		jLabel1.setText("起始号");
 
@@ -233,9 +233,7 @@ public class MainFrame extends javax.swing.JFrame {
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
 			java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
-		// </editor-fold>
 
-		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				new MainFrame().setVisible(true);
@@ -253,18 +251,17 @@ public class MainFrame extends javax.swing.JFrame {
 		return tce;
 	}
 
-	private TableCellRenderer setNoEditor() {
-		DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-		return tcr;
-	}
-
-	private JTableHeader getHeader() {
-		JTableHeader header = new JTableHeader();
-		DefaultTableCellHeaderRenderer tcr = new DefaultTableCellHeaderRenderer();
-		tcr.setHorizontalAlignment(JLabel.CENTER);
-		header.setDefaultRenderer(tcr);
-		header.setEnabled(true);
-		return header;
+	private void jCheckBox1StateChanged(java.awt.event.MouseEvent evt) {
+		if (jCheckBox1.isSelected()) {
+			DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
+			int index = (int) tm.getValueAt(tm.getRowCount() - 1, 0);
+			index = index + 1;
+			tm.addRow(new Object[] { index, "CREATED_BY", "VARCHAR2(64)", "创建人", true });
+			tm.addRow(new Object[] { index + 1, "CREATED_DATE", "DATE", "创建时间", true });
+			tm.addRow(new Object[] { index + 2, "UPDATED_BY", "VARCHAR2(64)", "修改人", true });
+			tm.addRow(new Object[] { index + 3, "UPDATED_DATE", "DATE", "修改时间", true });
+			jTable1.setModel(tm);
+		}
 	}
 
 }
