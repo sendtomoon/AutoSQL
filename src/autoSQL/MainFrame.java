@@ -2,8 +2,10 @@ package autoSQL;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableColumnModel;
 
 public class MainFrame extends javax.swing.JFrame {
 
@@ -213,9 +215,6 @@ public class MainFrame extends javax.swing.JFrame {
 		Gere.gere(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), tm);
 	}
 
-	/**
-	 * @param args the command line arguments
-	 */
 	public static void main(String args[]) {
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
