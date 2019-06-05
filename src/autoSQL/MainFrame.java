@@ -1,13 +1,14 @@
 package autoSQL;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
-import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.JFrame;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableColumnModel;
 
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 621549132742507169L;
 
@@ -49,15 +50,14 @@ public class MainFrame extends javax.swing.JFrame {
 		jLabel4 = new javax.swing.JLabel();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle("SQLÉú³ÉÆ÷");
+		setTitle("SQLç”Ÿæˆå™¨");
 
-		jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-		jTable1.setModel(new javax.swing.table.DefaultTableModel(
+		jTable1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+		jTable1.setModel(new DefaultTableModel(
 				new Object[][] { { new Integer(1), "ID", "VARCHAR2(64)", "UUID", new Boolean(true) } },
-				new String[] { "ĞòºÅ", "×Ö¶ÎÃû³Æ", "×Ö¶ÎÀàĞÍ", "×¢ÊÍ", "ÊÇ·ñÔÊĞí¿Õ" }) {
+				new String[] { "åºå·", "å­—æ®µåç§°", "å­—æ®µç±»å‹", "æ³¨é‡Š", "æ˜¯å¦å…è®¸ç©º" }) {
 			private static final long serialVersionUID = -4390239607921494217L;
-			Class[] types = new Class[] { java.lang.Integer.class, java.lang.String.class, java.lang.String.class,
-					java.lang.String.class, java.lang.Boolean.class };
+			Class[] types = new Class[] { Integer.class, String.class, String.class, String.class, Boolean.class };
 			boolean[] canEdit = new boolean[] { false, true, true, true, true };
 
 			public Class getColumnClass(int columnIndex) {
@@ -69,7 +69,7 @@ public class MainFrame extends javax.swing.JFrame {
 			}
 		});
 		jTable1.setRowHeight(26);
-		jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jTable1.getTableHeader().setReorderingAllowed(false);
 		jScrollPane1.setViewportView(jTable1);
 		if (jTable1.getColumnModel().getColumnCount() > 0) {
@@ -77,21 +77,21 @@ public class MainFrame extends javax.swing.JFrame {
 			jTable1.getColumnModel().getColumn(2).setCellEditor(setTypeEditor());
 		}
 
-		addButton.setText("Ìí¼ÓÒ»ĞĞ");
+		addButton.setText("æ·»åŠ ä¸€è¡Œ");
 		addButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				addButtonMouseClicked(evt);
 			}
 		});
 
-		delButton.setText("É¾³ı¸ÃĞĞ");
+		delButton.setText("åˆ é™¤è¯¥è¡Œ");
 		delButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				delButtonMouseClicked(evt);
 			}
 		});
 
-		jButton1.setText("Éú³ÉSQL");
+		jButton1.setText("ç”ŸæˆSQL");
 		jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				jButton1MouseClicked(evt);
@@ -99,19 +99,19 @@ public class MainFrame extends javax.swing.JFrame {
 		});
 
 		jCheckBox1.setSelected(false);
-		jCheckBox1.setText("ÊÇ·ñÉú³ÉÁôºÛSQL");
+		jCheckBox1.setText("æ˜¯å¦ç”Ÿæˆç•™ç—•SQL");
 		jCheckBox1.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				jCheckBox1StateChanged(evt);
 			}
 		});
 
-		jLabel1.setText("ÆğÊ¼ºÅ");
+		jLabel1.setText("èµ·å§‹å·");
 
-		jLabel2.setText("±à¼­ÈË");
+		jLabel2.setText("ç¼–è¾‘äºº");
 
-		jLabel3.setText("±íÃû");
-		jLabel4.setText("±í×¢ÊÍ");
+		jLabel3.setText("è¡¨å");
+		jLabel4.setText("è¡¨æ³¨é‡Š");
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
@@ -190,6 +190,8 @@ public class MainFrame extends javax.swing.JFrame {
 								javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)));
 
 		pack();
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
 	}
 
 	private void addButtonMouseClicked(java.awt.event.MouseEvent evt) {
@@ -238,6 +240,7 @@ public class MainFrame extends javax.swing.JFrame {
 				new MainFrame().setVisible(true);
 			}
 		});
+
 	}
 
 	private TableCellEditor setTypeEditor() {
@@ -255,10 +258,10 @@ public class MainFrame extends javax.swing.JFrame {
 			DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
 			int index = (int) tm.getValueAt(tm.getRowCount() - 1, 0);
 			index = index + 1;
-			tm.addRow(new Object[] { index, "CREATED_BY", "VARCHAR2(64)", "´´½¨ÈË", true });
-			tm.addRow(new Object[] { index + 1, "CREATED_DATE", "DATE", "´´½¨Ê±¼ä", true });
-			tm.addRow(new Object[] { index + 2, "UPDATED_BY", "VARCHAR2(64)", "ĞŞ¸ÄÈË", true });
-			tm.addRow(new Object[] { index + 3, "UPDATED_DATE", "DATE", "ĞŞ¸ÄÊ±¼ä", true });
+			tm.addRow(new Object[] { index, "CREATED_BY", "VARCHAR2(64)", "åˆ›å»ºäºº", true });
+			tm.addRow(new Object[] { index + 1, "CREATED_DATE", "DATE", "åˆ›å»ºæ—¶é—´", true });
+			tm.addRow(new Object[] { index + 2, "UPDATED_BY", "VARCHAR2(64)", "ä¿®æ”¹äºº", true });
+			tm.addRow(new Object[] { index + 3, "UPDATED_DATE", "DATE", "ä¿®æ”¹æ—¶é—´", true });
 			jTable1.setModel(tm);
 		}
 	}
