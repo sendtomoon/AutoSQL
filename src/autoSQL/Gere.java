@@ -59,7 +59,7 @@ public class Gere {
 			file = new File(no + "_ommdata_ddl_grt_" + tableName + "_" + editor + ".sql");
 			out = new FileOutputStream(file, false);
 			sb = new StringBuffer();
-			sb.append("grant select, insert, update, delete on OMMDATA." + tableName + " to OMMOPR;");
+			sb.append("grant select, insert, update, delete on OMMDATA." + tableName + " to OMMOPR; \r\n");
 			sb.append("grant select on OMMDATA." + tableName + " to devsup01;");
 			out.write(sb.toString().getBytes("utf-8"));
 			out.flush();
