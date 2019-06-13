@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+	body{font-size:20px}
+	input{font-size:20px}
+	button{font-size:20px}
+</style>
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="main.js" ></script>
+<meta charset="UTF-8">
+<title>AutoSQL</title>
+</head>
+<body>
+	<table style="border-collapse:separate; border-spacing:0px 10px;">
+		<tbody>
+			<tr>
+				<td>起始编号：</td><td><input style="length: 15" />
+				<td width="100px"></td>
+				<td><button onclick="addRow()">添加一行</button></td>
+			</tr>                 
+			<tr>
+				<td>编辑人：</td><td><input style="length: 15" /></td>
+				<td width="100px"></td>
+			</tr>
+			<tr>
+				<td>表名：</td><td><input style="length: 15" /></td>
+				<td width="100px"></td>
+				<td><button onclick="addTracer()">添加留痕SQL</button></td>
+			</tr>
+			<tr>
+				<td>表注释：</td><td><input style="length: 15" /></td>
+				<td width="100px"></td>
+			</tr>
+		</tbody>
+	</table>
+<div>
+<table id="dataTable" style="border-collapse:separate; border-spacing:0px 0px; "border="1">
+	<thead align="center"><tr style="background-color:#70AD47">
+	<td width="50px">序号</td>
+	<td width="150px">列名</td>
+	<td width="150px">字段类型</td>
+	<td width="250px">字段注释</td>
+	<td width="100px">操作</td>
+	</tr></thead>
+	<tbody align="center">
+		<tr height="40px" >
+		<td align="center">1</td>
+		<td><input value="ID" /></td>
+		<td><input value="VARCHAR2(64)" /></td>
+		<td><input value="UUID"  width="250px"/></td>
+		<td><button onclick="delRow(this)" >删除</button></td>
+		</tr>
+	</tbody>
+</table>
+
+</div>
+</body>
+</html>
