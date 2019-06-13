@@ -1,10 +1,16 @@
 package autoSQL;
 
+import java.awt.Color;
+
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 
@@ -12,9 +18,9 @@ public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 621549132742507169L;
 
-	private javax.swing.JButton addButton;
-	private javax.swing.JButton delButton;
-	private javax.swing.JButton jButton1;
+	private JButton addButton;
+	private JButton delButton;
+	private JButton jButton1;
 	private javax.swing.JCheckBox jCheckBox1;
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabel2;
@@ -34,11 +40,11 @@ public class MainFrame extends JFrame {
 	@SuppressWarnings("unchecked")
 	private void initComponents() {
 
-		jScrollPane1 = new javax.swing.JScrollPane();
-		jTable1 = new javax.swing.JTable();
-		addButton = new javax.swing.JButton();
-		delButton = new javax.swing.JButton();
-		jButton1 = new javax.swing.JButton();
+		jScrollPane1 = new JScrollPane();
+		jTable1 = new JTable();
+		addButton = new JButton();
+		delButton = new JButton();
+		jButton1 = new JButton();
 		jTextField1 = new javax.swing.JTextField();
 		jTextField2 = new javax.swing.JTextField();
 		jTextField3 = new javax.swing.JTextField();
@@ -49,10 +55,10 @@ public class MainFrame extends JFrame {
 		jLabel3 = new javax.swing.JLabel();
 		jLabel4 = new javax.swing.JLabel();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("SQL生成器");
 
-		jTable1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+		jTable1.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
 		jTable1.setModel(new DefaultTableModel(
 				new Object[][] { { new Integer(1), "ID", "VARCHAR2(64)", "UUID", new Boolean(true) } },
 				new String[] { "序号", "字段名称", "字段类型", "注释", "是否允许空" }) {
@@ -76,6 +82,7 @@ public class MainFrame extends JFrame {
 			jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);
 			jTable1.getColumnModel().getColumn(2).setCellEditor(setTypeEditor());
 		}
+		jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
 
 		addButton.setText("添加一行");
 		addButton.addMouseListener(new java.awt.event.MouseAdapter() {
